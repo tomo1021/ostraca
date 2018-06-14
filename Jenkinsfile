@@ -21,6 +21,8 @@ node {
             // id = sh returnStdout: true, script: "${terraform} state show aws_lb_target_group_attachment.2anet_tgg_ata | grep target_id | awk '{print ${option}}'"
             id = sh returnStdout: true,\
                 script: "${terraform} state show aws_lb_target_group_attachment.green_attach | grep target_id | awk '{print ${option}}'"
+            sh "echo 'HELLO'"
+            sh "echo ${id}"
             try{
                 result = sh returnStdout: true,script: "${terraform} state show aws_instance.2anet_server1 | grep ${id}"
                 cgreen_name="2anet_server1"
@@ -28,7 +30,6 @@ node {
                 cgreen_name="2anet_server2"
             }
         }
-        sh "echo ${id}"
         sh "echo ${cgreen_name}"
     }
 
