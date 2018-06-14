@@ -19,12 +19,12 @@ node {
         dir("${tf_path}"){
             option = "\$3"
             id = sh returnStdout: true,sdcript: "${terraform } state show aws_lb_target_group_attachment.2anet_tgg_ata | grep target_id |awk '{print ${option}}'"
-            try{
-                result = sh returnStdout: true,script: "${terraform} state show aws_instance.2anet_server1 | grep ${id}"
-                cgreen_name="2anet_server1"
-            }catch(exception){
-                cgreen_name="2anet_server2"
-            }
+            // try{
+            //     result = sh returnStdout: true,script: "${terraform} state show aws_instance.2anet_server1 | grep ${id}"
+            //     cgreen_name="2anet_server1"
+            // }catch(exception){
+                // cgreen_name="2anet_server2"
+            // }
         }
         sh "echo ${id}"
     }
