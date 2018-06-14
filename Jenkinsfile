@@ -61,9 +61,10 @@ node {
             ip = sh returnStdout: true,script:"${terraform} state show aws_instance.${cgreen_name} | grep '^public_ip' | awk 'print${option}'"
             
             sh "echo ${ip}"
-            dir("${ansible_path}"){
+        }
+        dir("${ansible_path}"){
                 sh "echo 'おわり'"
-            }
+
         }
     }
 
