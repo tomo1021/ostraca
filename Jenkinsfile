@@ -18,7 +18,7 @@ node {
         //現在のGreenサーバの情報を取得
         dir("${tf_path}"){
             option = "\$3"
-            id = sh returnStdout: true,script: "${terraform} state show aws_lb_target_group_attachment.2anet_tgg_ata | grep target_id | awk '{print ${option}}'"
+            id = sh returnStdout: true, script: "${terraform} state show aws_lb_target_group_attachment.2anet_tgg_ata | grep target_id | awk '{print ${option}}'"
             // id = sh returnStdout: true,\
             //     script: "${terraform} state show aws_lb_target_group_attachment.green_attach | grep target_id | awk '{print ${option}}'"
             try{
