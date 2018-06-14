@@ -11,7 +11,7 @@ node {
     }
 
     stage("build & test"){
-        sh "echo 'Building code and test.''"
+        sh "echo 'Building code and test.'"
     }
 
     stage('Confirm current green server'){
