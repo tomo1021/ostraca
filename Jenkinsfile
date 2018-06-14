@@ -1,7 +1,7 @@
 def jenkins_path = "/var/lib/jenkins"
 def tf_path      = "${jenkins_path}/terraform/build"
-def ansible_path      = "${jenkins_path}/ansible"
-def terraform    = "/usr/local/bin/terraform" 
+def ansible_path = "${jenkins_path}/ansible"
+def terraform    =  "/usr/local/bin/terraform" 
 
 def cgreen_name = ""
 
@@ -20,7 +20,7 @@ node {
             option = "\$3"
             // id = sh returnStdout: true, script: "${terraform} state show aws_lb_target_group_attachment.2anet_tgg_ata | grep target_id | awk '{print ${option}}'"
             id = sh returnStdout: true,\
-                script: "${terraform} state show aws_lb_target_group_attachment.green_attach | grep target_id | awk '{print ${option}}'"
+                script: "${terraform} state show aws_lb_target_group_attachment.2anet_tgg_ata | grep target_id | awk '{print ${option}}'"
             sh "echo 'HELLO'"
             sh "echo ${id}"
             try{
