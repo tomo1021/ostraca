@@ -58,7 +58,7 @@ node {
         //Ansibleを使用して新しいblue serverを設定する
         dir("${tf_path}"){
             option = "\$3"
-            ip = sh returnStdout: true,script:"${terraform} state show aws_instance.${cgreen_name} | grep '^public_ip' | awk 'print${option}'"
+            ip = sh returnStdout: true,script:"${terraform} state show aws_instance.${cgreen_name} | grep '^public_ip' | awk '{print${option}}'"
             
             sh "echo ${ip}"
         }
