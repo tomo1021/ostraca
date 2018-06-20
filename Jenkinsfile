@@ -76,6 +76,12 @@ node {
     }
 
     stage('Switch the new blue server'){
+        option = "\$3"
+        dir("${tf_path}"){
+            idb = sh returnStdout: true,\
+                script: "${terraform} state show aws_lb_target_group_attachment.2anet_tgb_ata | grep target_id | awk '{print ${option}}'"
+            sh "${terraform} apply -var blue_server_id=${id} -var green_server_id = ${idb} ./stage2
+        }
 
     }
 }
