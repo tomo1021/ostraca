@@ -58,14 +58,14 @@ node {
         //Ansibleを使用して新しいblue serverを設定する
         dir("${tf_path}"){
             option = "\$3"
-            ip = sh returnStdout: true,script:"${terraform} state show aws_instance.${cgreen_name} | grep '^public_ip' | awk '{print${option}}'"
+            ip = sh returnStdout: true,script:"${terraform} state show aws_instance.${cgreen_name} | grep '^public_ip' | awk '{print${option}}'| tr -d '\n''"
             
             sh "echo ${ip}"
         }
         dir("${ansible_path}"){
             sh "echo '[blue_server]' > ./hosts"
             sh "echo ${ip} >> ./hosts" 
-            sh  "ansible-playbook -i ./hosts --private-key=./2Anet.pem ./ostraca.yml"
+            sh "ansible-playbook -i ./hosts --private-key=./2Anet.pem ./ostraca.yml"
 
         }
     }
